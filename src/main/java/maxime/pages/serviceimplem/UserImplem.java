@@ -35,7 +35,7 @@ public class UserImplem implements UserService {
     }
 
     @Override
-    public User updateUser(Long id, User entity) {
+    public User updateUser(User entity) {
         return userRepo.save(entity);
     }
     

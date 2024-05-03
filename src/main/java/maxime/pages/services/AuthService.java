@@ -15,5 +15,6 @@ public interface AuthService {
     String loginUser(User user, String password);
     User registerUser(User entity);
 
-    
+    String getEmailFromToken(String token);
+    String encryptPW(String password);
 }

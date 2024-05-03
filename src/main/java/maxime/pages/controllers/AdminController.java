@@ -102,7 +102,9 @@ public class AdminController {
             return new ResponseEntity<>("User does not exist",HttpStatus.NOT_FOUND);
 
         }
-        userService.updateUser(user.get().getId(),entity);
+        entity.setId(user.get().getId());
+        entity.setPassword(authService.encryptPW(entity.getPassword()));
+        userService.updateUser(entity);
         return new ResponseEntity<>(entity,HttpStatus.OK);
     }
 

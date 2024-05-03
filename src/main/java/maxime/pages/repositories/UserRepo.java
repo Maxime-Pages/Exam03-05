@@ -12,7 +12,7 @@ import maxime.pages.models.User;
 public interface UserRepo extends JpaRepository<User, Long> {
     User save(User entity);
     Optional<User> findById(Long Id);
-    Optional<User> findByEmail(String username);
+    Optional<User> findByEmail(String email);
     void deleteById(Long id);
 
     

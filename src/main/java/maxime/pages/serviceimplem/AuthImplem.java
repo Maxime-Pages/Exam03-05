@@ -51,5 +51,17 @@ public class AuthImplem implements AuthService{
         entity.setPassword(passwordEncoded);
         return userService.createUser(entity);
     }
+
+    @Override
+    public String getEmailFromToken(String token) {
+        return jwtService.extractUsername(token.substring("Bearer ".length()));
+    }
+
+    @Override
+    public String encryptPW(String password) {
+        return bCryptPasswordEncoder.encode(password);
+    }
+    
+    
     
 }

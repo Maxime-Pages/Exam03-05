@@ -13,9 +13,9 @@ public interface UserService {
 
     Optional<User> getUserById(Long valueOf);
 
-    void deleteUser(Long valueOf);
+    void deleteUser(Long id);
 
-    User updateUser(Long valueOf, User entity);
+    User updateUser(User entity);
 
     Optional<User> getUserByEmail(String email);
     

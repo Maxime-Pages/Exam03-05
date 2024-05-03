@@ -1,6 +1,12 @@
 package maxime.pages.config;
 
+import maxime.pages.models.Admin;
+import maxime.pages.models.User;
+import maxime.pages.repositories.AdminRepo;
 import maxime.pages.repositories.UserRepo;
+
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,11 +20,25 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class applicationConfig {
     @Autowired
     UserRepo repository;
+    @Autowired
+    AdminRepo adminRepo;
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> repository.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return email -> {
+            
+            Optional<User> user = repository.findByEmail(email);
+            if (user != null) {
+                return user.get();
+            }
+            
+            Optional<Admin> admin = adminRepo.findByEmail(email);
+            if (admin != null) {
+                return admin.get();
+            }
+            throw new UsernameNotFoundException("User not found with email: " + email);
+            
+        };
     }
 
     @Bean

@@ -34,12 +34,16 @@ public class User implements UserDetails {
     @Email
     private String email;
 
-    private Boolean valid;
+    private Boolean valid = false;
 
     private final Role role = Role.USER;
 
     @OneToMany
     private List<Article> articles;
+
+    public void AddArticle(Article article) {
+        articles.add(article);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
