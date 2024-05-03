@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: pages
+  datasource:
+    url: jdbc:mysql://localhost:3306/testdb
+    username: toto
+    password: bob
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+
+  output:
+    ansi:
+      enabled: ALWAYS
+server:
+  port: 4242
